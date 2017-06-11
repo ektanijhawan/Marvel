@@ -19,7 +19,7 @@ import static com.ekta.marvel.network.Endpoints.MARVEL_ENDPOINT;
 public class RetrofilBuilder {
     static Retrofit retrofit;
 
-    public Retrofit getRetrofit() {
+    public static Retrofit getRetrofit() {
         if (retrofit == null) {
 
             OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();

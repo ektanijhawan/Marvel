@@ -15,7 +15,7 @@ import com.ekta.marvel.ui.ComicsFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new ComicsFragment(), getResources().getString(R.string.comics));
         adapter.addFragment(new CharactersFragment(), getResources().getString(R.string.characters));
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public BaseActivity getActivity() {
+        return getActivity();
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
