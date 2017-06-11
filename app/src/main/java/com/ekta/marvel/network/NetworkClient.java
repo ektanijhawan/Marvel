@@ -1,4 +1,4 @@
-package com.ekta.marvel.network.response.Comics;
+package com.ekta.marvel.network;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,17 +10,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.ekta.marvel.ui.BaseActivity;
+import com.ekta.marvel.ui.activities.BaseActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by Ekta on 11-06-2017.
@@ -177,6 +176,73 @@ public class NetworkClient {
 
     public BaseActivity getActivity() {
         return activity;
+    }
+
+    public <T> Observable<T> makeBackgroundServiceReq(Observable<JsonElement> serviceObserable, Class<T> serviceResponseType, Boolean isCache) {
+
+        try {
+
+            Observable<T> webServiceData1 = serviceObserable
+                    .timeout(new Func1<JsonElement, Observable<Object>>() {
+                        @Override
+                        public Observable<Object> call(JsonElement jsonElement) {
+
+                            return null;
+                        }
+                    })
+                    .onErrorReturn(new Func1<Throwable, JsonElement>() {
+                        @Override
+                        public JsonElement call(Throwable throwable) {
+
+                            return null;
+                        }
+                    })
+                    .onErrorResumeNext(new Func1<Throwable, Observable<? extends JsonElement>>() {
+                        @Override
+                        public Observable<? extends JsonElement> call(Throwable throwable) {
+                            return Observable.empty();
+                        }
+                    })
+                    .doOnError(new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            Log.e("Error", throwable.getMessage());
+//                            closeLoader();
+                        }
+                    })
+
+                    .map(new Func1<JsonElement, T>() {
+                        @Override
+                        public T call(JsonElement baseGsonBean) {
+                            Log.e("Data", "data " + baseGsonBean);
+                            if (baseGsonBean != null) {
+                                Gson gson = new Gson();
+                                return gson.fromJson(String.valueOf(baseGsonBean), serviceResponseType);
+                            }
+                            return null;
+
+                        }
+
+                    })
+                    .filter(new Func1<T, Boolean>() {
+                        @Override
+                        public Boolean call(T baseGsonBean) {
+
+
+                            return true;
+
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .unsubscribeOn(Schedulers.io());
+
+
+            return webServiceData1;
+        } catch (Exception e) {
+//            CustomLogger.error(this.getClass().getName(), e.getMessage());
+            return null;
+        }
+
     }
 
 }

@@ -1,16 +1,16 @@
-package com.ekta.marvel.ui;
+package com.ekta.marvel.ui.activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 
 import com.ekta.marvel.R;
-import com.ekta.marvel.ui.CharactersFragment;
-import com.ekta.marvel.ui.ComicsFragment;
+import com.ekta.marvel.ui.activities.BaseActivity;
+import com.ekta.marvel.ui.fragments.CharactersFragment;
+import com.ekta.marvel.ui.fragments.ComicsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

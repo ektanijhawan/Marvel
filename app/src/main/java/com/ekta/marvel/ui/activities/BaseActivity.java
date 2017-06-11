@@ -1,4 +1,4 @@
-package com.ekta.marvel.ui;
+package com.ekta.marvel.ui.activities;
 
 import android.support.v7.app.AppCompatActivity;
 

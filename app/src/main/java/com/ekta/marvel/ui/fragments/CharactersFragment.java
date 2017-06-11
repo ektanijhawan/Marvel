@@ -1,4 +1,4 @@
-package com.ekta.marvel.ui;
+package com.ekta.marvel.ui.fragments;
 
 
 import android.os.Bundle;
