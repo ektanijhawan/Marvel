@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.ekta.marvel.ui.fragments.CharactersFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCharacters"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Characters" />
-
+        android:layout_height="wrap_content"/>
 </FrameLayout>

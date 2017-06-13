@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Marvel</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="comics">Comics</string>
     <string name="characters">Characters</string>
+    <string name="net_not_available">Internet is not available.!</string>
+    <string name="loading">Loading</string>
+    <string name="title">Title :</string>
+    <string name="desc">Description :</string>
+    <string name="name">Name :</string>
+    <string name="character_comics_text">CHARACTER IS IN THESE COMICS</string>
+    <string name="comics_characters">CHARACTERS IS AVAILABLE IN THESE COMICS</string>
+    <string name="no_char_available">NO CHARACTERS AVAILABLE IN THIS COMIC.!</string>
+    <string name="no_comics_available">NO COMICS AVAILABLE FOR THIS CHARACTER</string>
+    <string name="no_desc_available">No description available.</string>
 </resources>

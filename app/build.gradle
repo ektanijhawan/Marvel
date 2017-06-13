@@ -33,21 +33,26 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    //okhttp
+    // retrofit, gson
+    // RxJava
+    //glide
+
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'
-    //okhttp
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    // retrofit, gson
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    compile "io.reactivex:rxjava:0.24.0" // RxJava
+    compile 'io.reactivex:rxjava:0.24.0'
     compile 'io.reactivex:rxandroid:0.24.0'
-//glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'commons-codec:commons-codec:1.10'
+    compile "com.squareup.picasso:picasso:2.4.0"
 
     testCompile 'junit:junit:4.12'
 }

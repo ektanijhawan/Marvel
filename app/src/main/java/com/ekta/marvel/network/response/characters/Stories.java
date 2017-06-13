@@ -1,11 +1,10 @@
-package com.ekta.marvel.network.response.Comics;
+package com.ekta.marvel.network.response.characters;
 
 /**
  * Created by Ekta on 11-06-2017.
  */
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,7 +12,7 @@ import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Characters implements Serializable, Parcelable
+public class Stories implements Serializable, Parcelable
 {
 
     @SerializedName("available")
@@ -24,32 +23,32 @@ public class Characters implements Serializable, Parcelable
     private String collectionURI;
     @SerializedName("items")
     @Expose
-    private List<Item_> items = new ArrayList<>();
+    private List<Item__> items = null;
     @SerializedName("returned")
     @Expose
     private Integer returned;
-    public final static Parcelable.Creator<Characters> CREATOR = new Creator<Characters>() {
+    public final static Parcelable.Creator<Stories> CREATOR = new Creator<Stories>() {
 
 
         @SuppressWarnings({
                 "unchecked"
         })
-        public Characters createFromParcel(Parcel in) {
-            Characters instance = new Characters();
+        public Stories createFromParcel(Parcel in) {
+            Stories instance = new Stories();
             instance.available = ((Integer) in.readValue((Integer.class.getClassLoader())));
             instance.collectionURI = ((String) in.readValue((String.class.getClassLoader())));
-            in.readList(instance.items, (com.ekta.marvel.network.response.Comics.Item_.class.getClassLoader()));
+            in.readList(instance.items, (com.ekta.marvel.network.response.characters.Item__.class.getClassLoader()));
             instance.returned = ((Integer) in.readValue((Integer.class.getClassLoader())));
             return instance;
         }
 
-        public Characters[] newArray(int size) {
-            return (new Characters[size]);
+        public Stories[] newArray(int size) {
+            return (new Stories[size]);
         }
 
     }
             ;
-    private final static long serialVersionUID = 9128921731204555297L;
+    private final static long serialVersionUID = -3558082251850515812L;
 
     public Integer getAvailable() {
         return available;
@@ -67,11 +66,11 @@ public class Characters implements Serializable, Parcelable
         this.collectionURI = collectionURI;
     }
 
-    public List<Item_> getItems() {
+    public List<Item__> getItems() {
         return items;
     }
 
-    public void setItems(List<Item_> items) {
+    public void setItems(List<Item__> items) {
         this.items = items;
     }
 

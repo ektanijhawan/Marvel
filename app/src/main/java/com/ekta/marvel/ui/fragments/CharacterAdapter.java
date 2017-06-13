@@ -11,9 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ekta.marvel.R;
-import com.ekta.marvel.network.response.Comics.Result;
 import com.ekta.marvel.utils.Constants;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,26 +20,23 @@ import java.util.List;
  * Created by Ekta on 11-06-2017.
  */
 
-public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ViewHolderComic> {
+public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.ViewHolderComic> {
 
 
-    //    public VolleySingleton volleySingleton;
-//    public ImageLoader imageLoader;
-//    public ArrayList<Movie> listMovies = new ArrayList<>();
     private LayoutInflater layoutInflater;
     public Context context;
     public ClickListener clickListener;
-    public List<Result> listResult = new ArrayList<>();
+    public List<com.ekta.marvel.network.response.characters.Result> listResult = new ArrayList<>();
 
 
-    public ComicAdapter(Context context) {
+    public CharacterAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
 
         this.context = context;
 
     }
 
-    public void setComicList(List<Result> listResult) {
+    public void setCharacterList(List<com.ekta.marvel.network.response.characters.Result> listResult) {
 
         this.listResult = listResult;
         notifyItemChanged(0, listResult.size());
@@ -49,20 +44,21 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ViewHolderCo
 
     @Override
     public ViewHolderComic onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.cell_comic, parent, false);
+        View view = layoutInflater.inflate(R.layout.cell_character, parent, false);
         ViewHolderComic viewHolder = new ViewHolderComic(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolderComic holder, int position) {
-        Result currentComic = listResult.get(position);
+        com.ekta.marvel.network.response.characters.Result currentComic = listResult.get(position);
 
-        holder.mText.setText(currentComic.getTitle());
+        holder.mText.setText(currentComic.getName());
         String url = currentComic.getThumbnail().getPath() + Constants.THUMBNAIL_STANDARD + currentComic.getThumbnail().getExtension();
-
-        Picasso.with(context)
-                .load(url)
+        Glide.with(context).load(url)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.mThumnail);
     }
 
@@ -89,8 +85,8 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ViewHolderCo
         public ViewHolderComic(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            mThumnail = (ImageView) itemView.findViewById(R.id.ivComicThumbnail);
-            mText = (TextView) itemView.findViewById(R.id.tvComicTitle);
+            mThumnail = (ImageView) itemView.findViewById(R.id.ivCharacterThumbnail);
+            mText = (TextView) itemView.findViewById(R.id.tvCharacterTitle);
 
         }
 

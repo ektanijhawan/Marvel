@@ -16,6 +16,6 @@ public class Endpoints {
     public static final String API_KEY="&apikey=";
     public static final String HASH="&hash=";
 
-    public static final String LIMIT="&limit=10";
+    public static final String LIMIT="&limit=100";
 
 }
